@@ -9,7 +9,7 @@ SHELL := /usr/bin/env bash
 clean: clean-smoke-tests
 
 #: run the smoke tests
-smoke: smoke-app
+smoke: smoke-app smoke-sinatra
 
 #: cleanup the smoke and smoke it again
 resmoke: unsmoke smoke
@@ -20,6 +20,13 @@ smoke-app: smoke-tests/collector/data.json
 	@echo "+++ Running example app smoke tests."
 	@echo ""
 	cd smoke-tests && bats ./smoke-example-app.bats --report-formatter junit --output ./
+
+#: run the smoke test for a simple, instrumented Ruby script
+smoke-sinatra: smoke-tests/collector/data.json
+	@echo ""
+	@echo "+++ Running example sinatra smoke tests."
+	@echo ""
+	cd smoke-tests && bats ./smoke-example-app-sinatra.bats --report-formatter junit --output ./
 
 #: clear data from smoke tests
 smoke-tests/collector/data.json:
