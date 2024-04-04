@@ -1,0 +1,26 @@
+version: '3.0'
+
+x-env-base:
+  &env_base
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://collector:4318
+  OTEL_SERVICE_NAME: "otel-ruby-example"
+  OTEL_EXPORTER_OTLP_INSECURE: "true"
+
+services:
+  collector:
+    image: otel/opentelemetry-collector:0.97.0
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    volumes:
+      - "./collector/otel-collector-config.yaml:/etc/otel-collector-config.yaml"
+      - "./collector:/var/lib"
+
+  app:
+    build:
+      context: ../
+      dockerfile: ./examples/hello-world/Dockerfile
+    image: honeycomb/hello-world
+    depends_on:
+      - collector
+    environment:
+      <<: *env_base
+
