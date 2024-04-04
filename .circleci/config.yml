@@ -1,0 +1,61 @@
+version: 2.1
+
+filters_always: &filters_always
+  filters:
+    tags:
+      only: /.*/
+
+filters_publish: &filters_publish
+  filters:
+    tags:
+      only: /^v[0-9].*/
+    branches:
+      ignore: /.*/
+
+orbs:
+  bats: circleci/bats@1.0.0
+
+jobs:
+  smoke_test:
+    machine:
+      image: ubuntu-2004:2023.04.2
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - bats/install
+      - run:
+          name: What's the BATS?
+          command: |
+            which bats
+            bats --version
+      - run:
+          name: Smoke Test
+          command: make smoke
+      - store_test_results:
+          path: ./smoke-tests/
+      - store_artifacts:
+          path: ./smoke-tests/report.xml
+      - store_artifacts:
+          path: ./smoke-tests/collector/data-results
+      - run:
+          name: Extinguish the flames
+          command: make unsmoke
+
+workflows:
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - smoke_test
+
+  build:
+    jobs:
+      - smoke_test:
+          <<: *filters_always
+
