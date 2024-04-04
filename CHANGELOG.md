@@ -1,2 +1,1 @@
-# {project-name} changelog
-
+# honeycomb-opentelemetry-ruby changelog
