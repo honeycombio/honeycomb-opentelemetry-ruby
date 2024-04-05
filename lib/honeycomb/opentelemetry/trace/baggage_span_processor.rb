@@ -4,11 +4,39 @@ module Honeycomb
   module OpenTelemetry
     module Trace
       class BaggageSpanProcessor
-        # Called when a {Span} is started, if the {Span#recording?}
-        # returns true.
+        # Called when a {Span} is started, if the {Span#recording?} returns true.
         #
-        # This method is called synchronously on the execution thread, should
-        # not throw or block the execution thread.
+        # The BaggageSpanProcessor reads key/values stored in Baggage in the
+        # starting span's parent context and adds them as attributes to the span.
+        #
+        # Keys and values added to Baggage will appear on all subsequent child spans
+        # for a trace within this service *and* will be propagated to external services
+        # via propagation headers. If the external services also have a Baggage span
+        # processor, the keys and values will appear in those child spans as well.
+        #
+        # ⚠ ⚠ ⚠️
+        # To repeat: a consequence of adding data to Baggage is that the keys and
+        # values will appear in all outgoing HTTP headers from the application.
+        # Do not put sensitive information in Baggage.
+        # ⚠ ⚠ ⚠️
+        #
+        # @example
+        #   OpenTelemetry::SDK.configure do |c|
+        #     # Add the BaggageSpanProcessor to the collection of span processors
+        #     c.add_span_processor(Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor.new)
+        #
+        #     # Because the span processor list is no longer empty, the SDK will not use the
+        #     # values in OTEL_TRACES_EXPORTER to instantiate exporters.
+        #     # You'll need to declare your own here in the configure block.
+        #     #
+        #     # These lines setup the default: a batching OTLP exporter.
+        #     c.add_span_processor(
+        #       # these constructors without arguments will pull config from the environment
+        #       OpenTelemetry::SDK::Trace::Export::BatchSpanProcessor.new(
+        #         OpenTelemetry::Exporter::OTLP::Exporter.new()
+        #       )
+        #     )
+        #   end
         #
         # @param [Span] span the {Span} that just started, expected to conform
         #  to the concrete {Span} interface from the SDK and respond to :add_attributes.
