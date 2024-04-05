@@ -1,4 +1,5 @@
 require "honeycomb/opentelemetry/version"
+require "honeycomb/opentelemetry/trace/baggage_span_processor"
 
 module Honeycomb
   module OpenTelemetry
