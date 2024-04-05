@@ -1,4 +1,15 @@
-.circleci/process.yml
-smoke-tests/collector/data.json
-smoke-tests/collector/data-results/data*
-smoke-tests/report.xml
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/.circleci/process.yml
+/smoke-tests/collector/data.json
+/smoke-tests/collector/data-results/data*
+/smoke-tests/report.xml
+
+# rspec failure tracking
+.rspec_status
