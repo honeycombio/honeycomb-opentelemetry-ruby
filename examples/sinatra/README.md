@@ -15,8 +15,8 @@ Install the dependencies:
 bundle install
 ```
 
-Run the application with an exporter configured to display traces on stdout:
+Run the application (will export spans to an OTLP receiver at localhost:4318):
 
 ```bash
-OTEL_TRACES_EXPORTER=console ruby ./app.rb
+bundle exec ruby ./app.rb
 ```

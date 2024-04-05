@@ -38,3 +38,9 @@ teardown_file() {
 	assert_equal "$result" '"world"
 "hello"'
 }
+
+@test "BaggageSpanProcessor: key-values added to baggage appear on child spans" {
+	result=$(span_attributes_for ${TRACER_NAME} | jq "select(.key == \"for_the_children\").value.stringValue")
+	assert_equal "$result" '"another important value"
+"another important value"'
+}
