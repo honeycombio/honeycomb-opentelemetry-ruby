@@ -22,7 +22,7 @@ jobs:
       - image: cimg/ruby:2.7 # TODO: matrix the supported ruby versions
     steps:
       - checkout
-      - ruby/install-deps # TODO: confirm this caches dependencies
+      - ruby/install-deps
       - run: make test
 
   smoke_test:
