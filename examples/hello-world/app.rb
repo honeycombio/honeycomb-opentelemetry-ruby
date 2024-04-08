@@ -4,9 +4,7 @@ require "opentelemetry/sdk"
 require "opentelemetry/exporter/otlp"
 
 OpenTelemetry::SDK.configure do |c|
-  unless ENV["OTEL_SERVICE_NAME"]
-    c.service_name = "otel-ruby-example"
-  end
+  c.service_name = "otel-ruby-example" unless ENV["OTEL_SERVICE_NAME"]
 end
 
 # for this simple command-and-exit example, we can safely set an at_exit() hook
