@@ -38,11 +38,11 @@ RSpec.describe Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor do
     end
 
     it "implements #force_flush" do
-      expect(processor.force_flush).to eq(::OpenTelemetry::SDK::Trace::Export::SUCCESS)
+      expect(processor.force_flush).to eq(OpenTelemetry::SDK::Trace::Export::SUCCESS)
     end
 
     it "implements #shutdown" do
-      expect(processor.shutdown).to eq(::OpenTelemetry::SDK::Trace::Export::SUCCESS)
+      expect(processor.shutdown).to eq(OpenTelemetry::SDK::Trace::Export::SUCCESS)
     end
   end
 end
