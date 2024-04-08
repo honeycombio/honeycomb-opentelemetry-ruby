@@ -52,20 +52,23 @@ module Honeycomb
         # @param [Span] span the {Span} that just ended.
         def on_finish(span); end
 
-        # Export all ended spans to the configured `Exporter` that have not yet
-        # been exported.
+        # Export all ended spans to the configured `Exporter` that have not yet been exported.
+        # NO-OP method to satisfy the SpanProcessor duck type.
+        # Always successful; this processor does not maintain any state to flush.
         #
-        # @param [optional Numeric] timeout An optional timeout in seconds.
+        # @param [optional Numeric] timeout An optional timeout in seconds, unused in this implementation.
         # @return [Integer] 0 for success and there is nothing to flush so always successful.
-        def force_flush(timeout: nil)
+        def force_flush(_timeout: nil)
           0
         end
 
         # Called when {TracerProvider#shutdown} is called.
+        # NO-OP method to satisfy the SpanProcessor duck type.
+        # Always successful; this processor does not maintain any state to clean up or processes to close on shutdown.
         #
-        # @param [optional Numeric] timeout An optional timeout in seconds.
+        # @param [optional Numeric] timeout An optional timeout in seconds, unused in this implementation.
         # @return [Integer] 0 for success and there is nothing to stop so always successful.
-        def shutdown(timeout: nil)
+        def shutdown(_timeout: nil)
           0
         end
       end

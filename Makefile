@@ -10,6 +10,11 @@ test:
 	@echo "+++ Running tests"
 	bundle exec rake spec
 
+#: run the lint checks
+lint:
+	@echo "+++ Running the linter"
+	bundle exec rubocop --lint
+
 #: run all the lint/format/style checks
 style: rubocop
 rubocop:

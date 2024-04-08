@@ -17,9 +17,9 @@ Tracer = OpenTelemetry.tracer_provider.tracer('hello_world_tracer', '0.1.0')
 def hello_world
   "Hello, World!"
     .tap do |message|
-      Tracer.in_span('hello') do |span|
-        Tracer.in_span('world') do |span|
-          span.set_attribute("message", message)
+      Tracer.in_span('hello') do |_hello_span|
+        Tracer.in_span('world') do |world_span|
+          world_span.set_attribute("message", message)
           puts(message)
         end
       end
