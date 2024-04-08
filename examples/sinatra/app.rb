@@ -8,7 +8,7 @@ require "honeycomb/opentelemetry"
 
 OpenTelemetry::SDK.configure do |c|
   c.service_name = "otel-ruby-example" unless ENV["OTEL_SERVICE_NAME"]
-  c.use_all()
+  c.use_all
 
   # Add the BaggageSpanProcessor to the collection of span processors
   c.add_span_processor(Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor.new)
@@ -20,7 +20,7 @@ OpenTelemetry::SDK.configure do |c|
   c.add_span_processor(
     # these constructors without arguments will pull config from the environment
     OpenTelemetry::SDK::Trace::Export::BatchSpanProcessor.new(
-      OpenTelemetry::Exporter::OTLP::Exporter.new()
+      OpenTelemetry::Exporter::OTLP::Exporter.new
     )
   )
 end
