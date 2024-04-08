@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 
-gem "rackup"
-gem "sinatra"
-gem "opentelemetry-sdk"
+gem "honeycomb-opentelemetry", path: "../.."
 gem "opentelemetry-exporter-otlp"
 gem "opentelemetry-instrumentation-sinatra"
-gem "honeycomb-opentelemetry", path: "../.."
+gem "opentelemetry-sdk"
+gem "rackup"
+gem "sinatra"

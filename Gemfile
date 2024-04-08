@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 # Development dependencies declared here.
+gem "opentelemetry-sdk", ">= 1.0.0"
 gem "rake", "~> 12.0"
 gem "rspec", "~> 3.0"
 gem "rubocop"
-gem "opentelemetry-sdk", ">= 1.0.0"
