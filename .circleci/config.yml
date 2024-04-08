@@ -25,6 +25,14 @@ jobs:
       - ruby/install-deps
       - run: make test
 
+  style:
+    docker:
+      - image: cimg/ruby:2.7
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run: make style
+
   smoke_test:
     machine:
       image: ubuntu-2204:2024.01.1
@@ -65,6 +73,8 @@ workflows:
 
   build:
     jobs:
+      - style:
+          <<: *filters_always
       - test:
           <<: *filters_always
       - smoke_test:
