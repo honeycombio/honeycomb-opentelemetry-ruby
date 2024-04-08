@@ -10,7 +10,7 @@ RSpec.describe Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor do
 
     it "adds current baggage keys/values as attributes when a span starts" do
       processor.on_start(span, context_with_baggage)
-      expect(span).to have_received(:add_attributes).with({"a_key" => "a_value"})
+      expect(span).to have_received(:add_attributes).with({ "a_key" => "a_value" })
     end
 
     it "does not blow up when given nil context" do
@@ -28,7 +28,6 @@ RSpec.describe Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor do
     it "does not blow up when given a span that is not a Span" do
       expect { processor.on_start(:not_a_span, context_with_baggage) }.not_to raise_error
     end
-
   end
 
   describe "satisfy the SpanProcessor duck type with no-op methods" do
@@ -44,5 +43,4 @@ RSpec.describe Honeycomb::OpenTelemetry::Trace::BaggageSpanProcessor do
       expect(processor.shutdown).to eq(::OpenTelemetry::SDK::Trace::Export::SUCCESS)
     end
   end
-
 end

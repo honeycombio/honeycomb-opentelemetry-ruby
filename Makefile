@@ -15,6 +15,11 @@ lint:
 	@echo "+++ Running the linter"
 	bundle exec rubocop --lint
 
+#: fix code layout/formatting issues
+fix-layout:
+	@echo "+++ Fixing code layout"
+	bundle exec rubocop --fix-layout
+
 #: run all the lint/format/style checks
 style: rubocop
 rubocop:

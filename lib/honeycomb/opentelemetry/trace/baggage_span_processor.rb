@@ -44,6 +44,7 @@ module Honeycomb
         #  started span.
         def on_start(span, parent_context)
           return unless span.respond_to?(:add_attributes) && parent_context.is_a?(::OpenTelemetry::Context)
+
           span.add_attributes(::OpenTelemetry::Baggage.values(context: parent_context))
         end
 
