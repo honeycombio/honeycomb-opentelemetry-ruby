@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "opentelemetry" # API for Baggage access
 
 module Honeycomb

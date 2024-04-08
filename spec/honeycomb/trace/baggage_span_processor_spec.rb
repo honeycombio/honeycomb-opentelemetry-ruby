@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "opentelemetry"     # API for Baggage access, Span interface for spy
 require "opentelemetry/sdk" # SDK in tests to assert Export::SUCCESS
 

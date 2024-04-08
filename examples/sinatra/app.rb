@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "sinatra"
 require "opentelemetry/sdk"
 require "opentelemetry/exporter/otlp"

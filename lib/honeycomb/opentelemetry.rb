@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "honeycomb/opentelemetry/version"
 require "honeycomb/opentelemetry/trace/baggage_span_processor"
 
