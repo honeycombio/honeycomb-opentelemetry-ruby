@@ -1,9 +1,9 @@
-require 'opentelemetry/sdk'
-require 'opentelemetry/exporter/otlp'
+require "opentelemetry/sdk"
+require "opentelemetry/exporter/otlp"
 
 OpenTelemetry::SDK.configure do |c|
-  unless ENV['OTEL_SERVICE_NAME']
-    c.service_name = 'otel-ruby-example'
+  unless ENV["OTEL_SERVICE_NAME"]
+    c.service_name = "otel-ruby-example"
   end
 end
 
@@ -12,13 +12,13 @@ end
 at_exit { OpenTelemetry.tracer_provider.shutdown(timeout: 5) }
 
 # We'll need a tracer for our custom instrumentation
-Tracer = OpenTelemetry.tracer_provider.tracer('hello_world_tracer', '0.1.0')
+Tracer = OpenTelemetry.tracer_provider.tracer("hello_world_tracer", "0.1.0")
 
 def hello_world
   "Hello, World!"
     .tap do |message|
-      Tracer.in_span('hello') do |_hello_span|
-        Tracer.in_span('world') do |world_span|
+      Tracer.in_span("hello") do |_hello_span|
+        Tracer.in_span("world") do |world_span|
           world_span.set_attribute("message", message)
           puts(message)
         end
