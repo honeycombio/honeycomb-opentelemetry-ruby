@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     honeycomb-opentelemetry (0.1.0)
-      opentelemetry-api
+      opentelemetry-api (>= 1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -40,7 +40,7 @@ PLATFORMS
 
 DEPENDENCIES
   honeycomb-opentelemetry!
-  opentelemetry-sdk
+  opentelemetry-sdk (>= 1.0.0)
   rake (~> 12.0)
   rspec (~> 3.0)
 
