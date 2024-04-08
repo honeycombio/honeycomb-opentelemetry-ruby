@@ -2,5 +2,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: "3.0"
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
