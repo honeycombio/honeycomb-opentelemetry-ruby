@@ -26,6 +26,7 @@ OpenTelemetry::SDK.configure do |c|
 end
 at_exit { OpenTelemetry.tracer_provider.shutdown(timeout: 5) }
 
+# a minimally instrumented Sinatra app
 class AnApp < Sinatra::Base
   configure do
     set :bind, "0.0.0.0" # for use in docker
