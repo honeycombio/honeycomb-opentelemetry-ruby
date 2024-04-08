@@ -10,6 +10,12 @@ test:
 	@echo "+++ Running tests"
 	bundle exec rake spec
 
+#: run all the lint/format/style checks
+style: rubocop
+rubocop:
+	@echo "+++ Running all style checks"
+	bundle exec rubocop
+
 #: clean up the dev environment
 clean: clean-smoke-tests
 
