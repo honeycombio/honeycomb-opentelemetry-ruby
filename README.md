@@ -5,6 +5,14 @@
 These are Honeycomb's extra components for use with OpenTelemetry Ruby.
 They make using OpenTelemetry and Honeycomb easier!
 
-## Components Included
+## Getting Started
 
-* Coming soon!
+Installation and Usage coming soon ...
+
+## Why would I want to use this?
+
+* Multi-span attributes with the BaggageSpanProcessor
+
+## License
+
+[Apache 2.0 License](./LICENSE).
